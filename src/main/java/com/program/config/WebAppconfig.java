@@ -19,9 +19,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan(basePackages = "com.program")
 public class WebAppconfig implements WebMvcConfigurer {
 
-	@Autowired
-	Environment environment;
-
 	@Bean
 	public CloseableHttpClient httpClient() {
 		return HttpClients.createDefault();
@@ -29,7 +26,7 @@ public class WebAppconfig implements WebMvcConfigurer {
 
 	@Bean
 	public RestTemplate getRestTemplate() {
-		RestTemplate restTemplate = new RestTemplate();
+		RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory());
 		return restTemplate;
 	}
 
